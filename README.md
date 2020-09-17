@@ -6,6 +6,6 @@ This is a repository for OpenSIPIt#00 teams to store and share relevant configur
 
 [Add some description]
 
-## STIR/SHAKEN
+## [STIR/SHAKEN](STIR_SHAKEN)
 
 [Add some description]
