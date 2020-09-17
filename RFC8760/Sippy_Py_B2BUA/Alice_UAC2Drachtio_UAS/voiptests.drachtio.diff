@@ -1,0 +1,54 @@
+diff --git a/alice.py b/alice.py
+index 67b8059..82e1549 100644
+--- a/alice.py
++++ b/alice.py
+@@ -28,7 +28,7 @@
+ import sys, getopt
+ from time import sleep
+ 
+-sys.path.insert(0, 'dist/b2bua')
++sys.path.insert(0, '/home/sobomax/b2bua')
+ 
+ from sippy.MsgBody import MsgBody
+ from sippy.SipLogger import SipLogger
+diff --git a/bob.py b/bob.py
+index 5f1b67f..e815c5d 100644
+--- a/bob.py
++++ b/bob.py
+@@ -28,7 +28,7 @@
+ import sys, getopt
+ from time import sleep
+ 
+-sys.path.insert(0, 'dist/b2bua')
++sys.path.insert(0, '/home/sobomax/b2bua')
+ 
+ from sippy.MsgBody import MsgBody
+ from sippy.SipLogger import SipLogger
+diff --git a/lib/test_config.py b/lib/test_config.py
+index e928aba..43420e2 100644
+--- a/lib/test_config.py
++++ b/lib/test_config.py
+@@ -36,6 +36,7 @@ class test_case_config(object):
+     uac_creds = None
+ 
+     def checkhostport(self, sdp_body):
++        return (True, 'all good')
+         for i in range(0, len(sdp_body.content.sections)):
+             sect = sdp_body.content.sections[i]
+             if sect.m_header.transport.lower() not in ('udp', 'udptl', 'rtp/avp'):
+@@ -63,8 +64,13 @@ class test_config(object):
+ 
+     def gen_tccfg(self, atype, done_cb, cli = None):
+         tccfg = test_case_config()
+-        tccfg.uac_creds = AUTH_CREDS('mightyuser', 's3cr3tpAssw0Rd')
+-        tccfg.uas_creds = AUTH_CREDS('mightyuser', 's3cr3tpAssw0Rd')
++        tccfg.uac_creds = AUTH_CREDS('admin', 'test123')
++        tccfg.uac_creds.enalgs = ('SHA-512-256', 'SHA-256', 'MD5')
++        tccfg.uac_creds.enalgs = ('SHA-512-256', 'SHA-256', 'MD5',)
++        tccfg.uas_creds = AUTH_CREDS('opensipit2020', 'r6ZLMw82gQK4bVdgDLzgG2s7YBp')
++        tccfg.uas_creds.realm = 'OpenSIPIt.org'
++        #tccfg.uas_creds.enalgs = ('SHA-512-256', 'SHA-256')
++        #tccfg.uas_creds.enalgs = (None,)
+         tccfg.global_config = self.global_config
+         if self.body != None:
+             tccfg.body = self.body.getCopy()
