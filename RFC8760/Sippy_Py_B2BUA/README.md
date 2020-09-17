@@ -1,4 +1,4 @@
-# Sippy Python B2BUA configuration for the RFC8760 tests
+# Sippy Python B2BUA & VoipTests configuration for the RFC8760 tests
 
 ## Prerequisites
 
