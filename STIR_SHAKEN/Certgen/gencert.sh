@@ -30,6 +30,7 @@ openssl ecparam -noout -name prime256v1 -genkey -out myCA.key -outform PEM
 openssl req -x509 -new -nodes -key myCA.key -sha256 -days 1825 -out myCA.pem \
   -subj '/C=CA/ST=BC/L=Someplace/O=BigFatTelecom Corp./OU=VOIP/CN=SHAKEN' \
   -outform PEM
-openssl x509 -req -in csr.pem -CA myCA.pem -CAkey myCA.key -CAcreateserial \
+openssl x509 -extfile openssl.conf -extensions v3_req -req -in csr.pem -CA \
+  myCA.pem -CAkey myCA.key -CAcreateserial \
   -out cert.pem -days 825 -sha256 -outform PEM
 
